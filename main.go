@@ -8,7 +8,7 @@ import "fmt"
 
 // Returns a channel sending integers from start to infinity, or exit which is
 // more likely to be the first.
-func naturals(start int) chan int {
+func naturals(start int) <-chan int {
 	naturals := make(chan int)
 	go func() {
 		n := start
@@ -22,7 +22,7 @@ func naturals(start int) chan int {
 
 // Takes each int from in and writes it to the returned channel, if not dividable
 // by n.
-func filter(n int, in chan int) chan int {
+func filter(n int, in <-chan int) <-chan int {
 	filtered := make(chan int)
 	go func() {
 		for true {
